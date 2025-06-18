@@ -82,7 +82,51 @@ const RuralHandsFooter = () => {
             </ul>
           </div>
 
-         
+          {/* Support Section */}
+          <div className="space-y-6">
+            <h4 className="text-xl font-bold text-orange-300">Support</h4>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="/help" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/returns" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Returns
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/track-order" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Track Order
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/privacy" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+        </div>
+      </div>
+    </footer>
   );
 };
 
