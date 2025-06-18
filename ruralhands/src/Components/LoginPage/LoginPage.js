@@ -53,6 +53,35 @@ export default function LoginForm() {
           <p className="text-gray-600 text-sm">Sign in to your account to continue</p>
         </div>
 
-       
+        {/* User Type Selection */}
+        <div className="mb-6">
+          <label className="text-xl font-medium text-gray-700 mb-3 block">I am a:</label>
+          <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-lg">
+            <button
+              type="button"
+              onClick={() => setUserType('buyer')}
+              className={`py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-md ${
+                userType === 'buyer'
+                  ? 'bg-white text-blue-600 shadow-sm border border-gray-200 hover:bg-blue-50 hover:border-blue-300'
+                  : 'text-gray-600 hover:text-blue-600 hover:bg-white/50'
+              }`}
+            >
+              Buyer
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserType('seller')}
+              className={`py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-md ${
+                userType === 'seller'
+                  ? 'bg-white text-blue-600 shadow-sm border border-gray-200 hover:bg-blue-50 hover:border-blue-300'
+                  : 'text-gray-600 hover:text-blue-600 hover:bg-white/50'
+              }`}
+            >
+              Seller
+            </button>
+          </div>
+        </div>
+
+        
   );
 }
