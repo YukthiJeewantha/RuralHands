@@ -106,7 +106,20 @@ const Navbar = () => {
         </div>
       </div>
 
-     
+      {/* Category Navigation */}
+      <div className="bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center space-x-1 h-14 overflow-x-auto">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className="text-sm font-medium text-white hover:text-white hover:bg-white/20 transition-all duration-300 whitespace-nowrap px-4 py-2 rounded-lg backdrop-blur-sm border border-white/20 hover:border-white/30 hover:shadow-md transform hover:scale-105"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </nav>
   );
