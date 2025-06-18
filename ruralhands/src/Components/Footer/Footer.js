@@ -43,10 +43,46 @@ const RuralHandsFooter = () => {
             </div>
           </div>
 
-          
-        </div>
-      </div>
-    </footer>
+          {/* Quick Links Section */}
+          <div className="space-y-6">
+            <h4 className="text-xl font-bold text-orange-300">Quick Links</h4>
+            <ul className="space-y-3">
+              <li>
+                <a 
+                  href="/about" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/contact" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/faq" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/shipping" 
+                  className="text-gray-300 hover:text-orange-300 transition-colors duration-200 hover:underline"
+                >
+                  Shipping
+                </a>
+              </li>
+            </ul>
+          </div>
+
+         
   );
 };
 
