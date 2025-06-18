@@ -52,7 +52,63 @@ const Navbar = () => {
             </div>
           </div>
 
-          
+          {/* Right Side Icons */}
+          <div className="flex items-center space-x-4 flex-shrink-0">
+            {/* Account Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsAccountOpen(!isAccountOpen)}
+                className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all duration-300 group"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center group-hover:from-orange-50 group-hover:to-orange-100 transition-all duration-300">
+                  <User className="w-4 h-4" />
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-xs text-gray-500">Hello</span>
+                  <span className="text-sm font-semibold">Account</span>
+                </div>
+                <ChevronDown className="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-300" />
+              </button>
+              
+              {isAccountOpen && (
+                <div className="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl py-2 z-20 border border-gray-100 animate-in slide-in-from-top-2 duration-200">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <p className="text-sm font-semibold text-gray-900">Welcome to Rural Hands</p>
+                    <p className="text-xs text-gray-500">Access your account</p>
+                  </div>
+                  <a href="#" className="flex items-center px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200">
+                    <User className="w-4 h-4 mr-3" />
+                    Sign In
+                  </a>
+                  <a href="#" className="flex items-center px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200">
+                    <div className="w-4 h-4 mr-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs">$</span>
+                    </div>
+                    Become a seller
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Cart */}
+            <div className="relative">
+              <button className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all duration-300 group">
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center group-hover:from-orange-50 group-hover:to-orange-100 transition-all duration-300">
+                  <ShoppingCart className="w-4 h-4" />
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-xs text-gray-500">Your</span>
+                  <span className="text-sm font-semibold">Cart</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+      </div>
+    </nav>
   );
 };
 
