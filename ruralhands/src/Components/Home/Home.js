@@ -222,4 +222,114 @@ const Homepage = () => {
                   </button>
                 </div>
 
-                
+                {/* Product Info */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    by {product.artist}
+                  </p>
+
+                  {/* Rating */}
+                  <div className="flex items-center mb-3">
+                    <div className="flex items-center mr-2">
+                      {renderStars(product.rating)}
+                    </div>
+                    <span className="text-sm text-gray-500">({product.reviews})</span>
+                  </div>
+
+                  {/* Price Display */}
+                  <div className="text-center">
+                    <span className="text-2xl font-bold text-green-600">
+                      Rs. {product.price.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="py-16 px-4 bg-green-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What Our Customers Say
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Real stories from people who love handcrafted quality
+            </p>
+          </div>
+
+          {/* Testimonials Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                id: 1,
+                rating: 5,
+                text: "The quality of handcrafted items here is exceptional. I love supporting rural artisans!",
+                name: "Chathurika Jayasinghe",
+                location: "Homagama, Sri Lanka"
+              },
+              {
+                id: 2,
+                rating: 5,
+                text: "Fresh, authentic products that tell a story. Rural Hands connects me to real craftsmanship.",
+                name: "Anuruddha Dissanayake",
+                location: "Kadawatha, Sri Lanka"
+              },
+              {
+                id: 3,
+                rating: 5,
+                text: "Every purchase feels meaningful. The artisans' stories make each product special.",
+                name: "Shavinda Perera",
+                location: "Gampaha, Sri Lanka"
+              }
+            ].map((testimonial) => (
+              <div 
+                key={testimonial.id} 
+                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
+              >
+                {/* Stars */}
+                <div className="flex items-center mb-4">
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <Star
+                      key={index}
+                      className={`w-5 h-5 ${
+                        index < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Testimonial Text */}
+                <blockquote className="text-gray-700 italic mb-6 leading-relaxed">
+                  "{testimonial.text}"
+                </blockquote>
+
+                {/* Customer Info */}
+                <div className="border-t pt-4">
+                  <div className="font-semibold text-gray-900 mb-1">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {testimonial.location}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      
+      </div>
+    </div>
+  );
+};
+
+export default Homepage;
