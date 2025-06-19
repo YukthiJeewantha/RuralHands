@@ -2,7 +2,7 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import logo from "../../Assests/logo.png";
 
-export default function LoginForm() {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

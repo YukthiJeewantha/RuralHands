@@ -326,7 +326,33 @@ const Homepage = () => {
         </div>
       </div>
 
-      
+      {/* Trust Benefits Bar - Integrated */}
+      <div className="py-8 px-4 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit) => {
+              const IconComponent = benefit.icon;
+              return (
+                <div key={benefit.id} className="flex flex-col items-center text-center">
+                  {/* Icon */}
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+                    <IconComponent className="w-6 h-6 text-green-600" />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    {benefit.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-sm text-gray-600">
+                    {benefit.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
