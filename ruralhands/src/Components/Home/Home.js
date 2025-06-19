@@ -183,4 +183,43 @@ const Homepage = () => {
         </div>
       </div>
 
-      
+      {/* Featured Products Section */}
+      <div className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Featured Handcrafted Products
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Discover unique, authentic products made by talented rural artisans
+            </p>
+          </div>
+
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                {/* Product Image */}
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  {/* Heart Icon */}
+                  <button
+                    onClick={() => toggleFavorite(product.id)}
+                    className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors"
+                  >
+                    <Heart
+                      className={`w-5 h-5 ${
+                        favorites.has(product.id)
+                          ? 'text-red-500 fill-current'
+                          : 'text-gray-400'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                
