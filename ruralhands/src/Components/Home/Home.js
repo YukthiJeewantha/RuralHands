@@ -137,4 +137,50 @@ const Homepage = () => {
         </div>
       </div>
 
+      {/* Features Section */}
+      <div className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Made with Love */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Made with Love
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every product is handcrafted with care by skilled artisans who take pride in their work.
+              </p>
+            </div>
+
+            {/* Supporting Communities */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-yellow-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Supporting Communities
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Your purchases directly support rural families and help preserve traditional crafts.
+              </p>
+            </div>
+
+            {/* Quality Guaranteed */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Shield className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Quality Guaranteed
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We stand behind every product with our satisfaction guarantee and authentic quality promise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       
