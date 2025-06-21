@@ -1,19 +1,52 @@
 import { ChevronDown, Search, ShoppingCart, User } from 'lucide-react';
 import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // React Router imports
 import logo from "../../Assests/logo.png";
 
 const Navbar = () => {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate(); // Hook for programmatic navigation
+  const location = useLocation(); // Hook to get current location
 
+  // Categories with their routes
   const categories = [
-    'Home',
-    'Products', 
-    'Locator',
-    'About Us',
-    'Contact Us',
-    'Blog',
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' }, 
+    { name: 'Locator', path: '/ShopLocator' },
+    { name: 'About Us', path: '/AboutUs' },
+    { name: 'Contact Us', path: '/ContactUs' },
+    { name: 'Blog', path: '/Blog' },
   ];
+
+  // Handle search submission
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  // Handle logo click
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  // Handle cart click
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
+
+  // Handle account actions
+  const handleSignIn = () => {
+    navigate('/LoginPage');
+    setIsAccountOpen(false);
+  };
+
+  const handleBecomeSeller = () => {
+    navigate('/become-seller');
+    setIsAccountOpen(false);
+  };
 
   return (
     <nav className="bg-gradient-to-r from-white via-orange-25 to-white shadow-lg border-b border-orange-100">
@@ -26,6 +59,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="Logo" 
+                onClick={handleLogoClick}
                 className="w-20 h-20 object-contain transition-transform duration-300 transform hover:scale-110 hover:drop-shadow-lg cursor-pointer"
               />
             </div>
@@ -34,7 +68,7 @@ const Navbar = () => {
           {/* Search Bar - Centered */}
           <div className="flex-1 flex justify-center mx-8">
             <div className="relative w-full max-w-2xl">
-              <div className="relative group">
+              <form onSubmit={handleSearch} className="relative group">
                 <input
                   type="text"
                   placeholder="Search for products, brands, and more..."
@@ -43,12 +77,15 @@ const Navbar = () => {
                   className="w-full px-6 py-4 pl-6 pr-16 bg-white border-2 border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-orange-50 focus:border-orange-400 transition-all duration-300 shadow-sm hover:shadow-md text-gray-700 placeholder-gray-400"
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center">
-                  <button className="h-full px-6 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-r-2xl hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105 flex items-center space-x-2">
+                  <button 
+                    type="submit"
+                    className="h-full px-6 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-r-2xl hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105 flex items-center space-x-2"
+                  >
                     <Search className="w-5 h-5" />
                     <span className="font-medium">Search</span>
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
 
@@ -76,23 +113,32 @@ const Navbar = () => {
                     <p className="text-sm font-semibold text-gray-900">Welcome to Rural Hands</p>
                     <p className="text-xs text-gray-500">Access your account</p>
                   </div>
-                  <a href="#" className="flex items-center px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200">
+                  <button 
+                    onClick={handleSignIn}
+                    className="flex items-center w-full px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 text-left"
+                  >
                     <User className="w-4 h-4 mr-3" />
                     Sign In
-                  </a>
-                  <a href="#" className="flex items-center px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200">
+                  </button>
+                  <button 
+                    onClick={handleBecomeSeller}
+                    className="flex items-center w-full px-4 py-3 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 text-left"
+                  >
                     <div className="w-4 h-4 mr-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">$</span>
                     </div>
                     Become a seller
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
 
             {/* Cart */}
             <div className="relative">
-              <button className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all duration-300 group">
+              <button 
+                onClick={handleCartClick}
+                className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all duration-300 group"
+              >
                 <div className="w-8 h-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full flex items-center justify-center group-hover:from-orange-50 group-hover:to-orange-100 transition-all duration-300">
                   <ShoppingCart className="w-4 h-4" />
                 </div>
@@ -111,12 +157,17 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center space-x-1 h-14 overflow-x-auto">
             {categories.map((category, index) => (
-              <button
+              <Link
                 key={index}
-                className="text-sm font-medium text-white hover:text-white hover:bg-white/20 transition-all duration-300 whitespace-nowrap px-4 py-2 rounded-lg backdrop-blur-sm border border-white/20 hover:border-white/30 hover:shadow-md transform hover:scale-105"
+                to={category.path}
+                className={`text-sm font-medium transition-all duration-300 whitespace-nowrap px-4 py-2 rounded-lg backdrop-blur-sm border hover:shadow-md transform hover:scale-105 ${
+                  location.pathname === category.path
+                    ? 'text-white bg-white/30 border-white/50' // Active state
+                    : 'text-white hover:text-white hover:bg-white/20 border-white/20 hover:border-white/30'
+                }`}
               >
-                {category}
-              </button>
+                {category.name}
+              </Link>
             ))}
           </div>
         </div>
