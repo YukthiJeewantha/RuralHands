@@ -134,4 +134,27 @@ const AboutUs = () => {
         </div>
       </div>
 
-      
+      {/* Call to Action */}
+      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 py-20">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Join Our <span className="text-orange-600">Journey</span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            Be part of a movement that celebrates craftsmanship, supports communities, and brings authentic art into your life.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              Explore Our Collection
+            </button>
+            <button className="border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300">
+              Become an Artisan Partner
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutUs;
