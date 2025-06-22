@@ -266,4 +266,37 @@ const ContactUs = () => {
             </div>
           </div>
 
-          
+          {/* Why Choose RURALHANDS Card */}
+          <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-2xl p-8 text-gray-800">
+            <h3 className="text-3xl font-bold mb-4 text-orange-600 text-center">Why Choose RURALHANDS?</h3>
+            <div className="grid md:grid-cols-3 gap-8 mt-8">
+              <div className="text-center">
+                <div className="bg-orange-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Palette className="text-orange-700" size={32} />
+                </div>
+                <h4 className="font-semibold text-xl mb-3 text-orange-800">Authentic Craftsmanship</h4>
+                <p className="text-gray-700 text-lg leading-relaxed">Every piece is handcrafted by skilled artisans with generations of expertise and traditional techniques.</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-red-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="text-red-700" size={32} />
+                </div>
+                <h4 className="font-semibold text-xl mb-3 text-red-800">Supporting Communities</h4>
+                <p className="text-gray-700 text-lg leading-relaxed">Your purchase directly supports rural artisan communities and helps preserve traditional crafts for future generations.</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-orange-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="text-orange-700" size={32} />
+                </div>
+                <h4 className="font-semibold text-xl mb-3 text-orange-800">Unique & Premium Quality</h4>
+                <p className="text-gray-700 text-lg leading-relaxed">Each product is one-of-a-kind, made with the finest materials and meticulous attention to every detail.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactUs;
