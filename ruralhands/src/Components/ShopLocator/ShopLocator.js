@@ -126,4 +126,46 @@ const ShopLocator = () => {
                   </span>
                 </div>
 
-                
+                {/* Contact Info */}
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center text-gray-600">
+                    <span className="text-lg mr-3">📍</span>
+                    <span className="text-sm">{shop.address}</span>
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <span className="text-lg mr-3">📞</span>
+                    <span className="text-sm">{shop.phone}</span>
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <span className="text-lg mr-3">🕒</span>
+                    <span className="text-sm">{shop.hours}</span>
+                  </div>
+                </div>
+
+                {/* Visit Button */}
+                <button
+                  onClick={() => handleVisitShop(shop.locationUrl)}
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 transform hover:scale-105"
+                >
+                  Visit Shop
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-16 text-center py-8 border-t border-gray-200">
+          <p className="text-gray-600">
+            Can't find what you're looking for?
+            <button className="text-blue-500 hover:text-blue-600 font-semibold ml-2">
+              Contact Us
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ShopLocator;
