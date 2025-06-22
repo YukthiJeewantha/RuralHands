@@ -109,4 +109,84 @@ const ContactUs = () => {
             </div>
           </div>
 
-          
+          {/* Social Media Card */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-orange-100">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Follow Our Journey</h3>
+            <p className="text-gray-600 mb-6">
+              Stay connected with us on social media to see our latest handicrafts, artisan stories, and behind-the-scenes content.
+            </p>
+            <div className="flex space-x-4">
+              <a 
+                href="https://instagram.com/ruralhands_lk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-110"
+              >
+                <Instagram size={24} />
+              </a>
+              <a 
+                href="https://facebook.com/ruralhandslk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-blue-600 text-white p-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-110"
+              >
+                <Facebook size={24} />
+              </a>
+              <a 
+                href="https://twitter.com/ruralhands_lk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-blue-400 text-white p-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-110"
+              >
+                <Twitter size={24} />
+              </a>
+            </div>
+          </div>
+
+          {/* Contact Form Card */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-orange-100">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">Send us a Message</h2>
+            <p className="text-gray-600 mb-8 text-lg">
+              Fill out the form below and we'll get back to you within 24 hours.
+            </p>
+
+            {submitStatus === 'success' && (
+              <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl mb-6 flex items-center">
+                <Send className="mr-2" size={20} />
+                Thank you! Your message has been sent successfully.
+              </div>
+            )}
+
+            <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors duration-300 text-gray-700"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors duration-300 text-gray-700"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+              </div>
+
+              
