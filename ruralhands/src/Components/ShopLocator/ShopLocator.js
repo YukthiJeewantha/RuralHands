@@ -47,4 +47,83 @@ const ShopLocator = () => {
     },
   ];
 
-  
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    let stars = "";
+
+    for (let i = 0; i < fullStars; i++) {
+      stars += "★";
+    }
+    if (hasHalfStar) {
+      stars += "☆";
+    }
+    while (stars.length < 5) {
+      stars += "☆";
+    }
+
+    return stars;
+  };
+
+  const handleImageError = (e, fallbackGradient) => {
+    e.target.style.display = "none";
+    e.target.parentElement.style.background = fallbackGradient;
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-5">
+      <div className="max-w-7xl mx-auto">
+        {/* Shop by Category Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-gray-800">Authentic Local</span>
+            <span className="text-orange-500"> Shops</span>
+          </h1>
+          <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Connect with rural artisans and explore authentic local   {" "}
+            <span className="text-orange-600 font-semibold">shops</span> powered by{" "}
+            <span className="text-orange-600 font-semibold">Rural Hands</span>
+          </p>
+        </div>
+
+        
+
+        {/* Shops Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {shops.map((shop) => (
+            <div
+              key={shop.id}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              {/* Shop Image */}
+              <div
+                className="h-48 relative overflow-hidden"
+                style={{ background: shop.fallbackGradient }}
+              >
+                <img
+                  src={shop.image}
+                  alt={shop.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => handleImageError(e, shop.fallbackGradient)}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+              </div>
+
+              {/* Shop Details */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                  {shop.name}
+                </h3>
+
+                {/* Rating */}
+                <div className="flex items-center mb-4">
+                  <span className="text-yellow-400 text-lg mr-2">
+                    {renderStars(shop.rating)}
+                  </span>
+                  <span className="text-gray-600 text-sm">
+                    {shop.rating} ({shop.reviews} reviews)
+                  </span>
+                </div>
+
+                
