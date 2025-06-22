@@ -189,4 +189,81 @@ const ContactUs = () => {
                 </div>
               </div>
 
-              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors duration-300 text-gray-700"
+                    placeholder="+94 77 123 4567"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                    Subject *
+                  </label>
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors duration-300 text-gray-700"
+                  >
+                    <option value="">Select a subject</option>
+                    <option value="product-inquiry">Product Inquiry</option>
+                    <option value="custom-order">Custom Order</option>
+                    <option value="wholesale">Wholesale Partnership</option>
+                    <option value="artisan-collaboration">Artisan Collaboration</option>
+                    <option value="support">Customer Support</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                  Message *
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows="6"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors duration-300 text-gray-700 resize-none"
+                  placeholder="Tell us about your requirements, questions, or how we can help you..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const subject = encodeURIComponent('Inquiry from RURALHANDS Website');
+                  const body = encodeURIComponent(`Hello RURALHANDS Team,\n\nI am interested in your handicrafts and would like to get more information.\n\nName: ${formData.name}\nSubject: ${formData.subject}\nMessage: ${formData.message}\n\nThank you!`);
+                  window.open(`mailto:info@ruralhands.lk?subject=${subject}&body=${body}`, '_self');
+                }}
+                className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-8 rounded-xl hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-lg"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Opening Gmail...
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <Mail className="mr-2" size={20} />
+                    Send via Gmail
+                  </div>
+                )}
+              </button>
+            </div>
+          </div>
+
+          
