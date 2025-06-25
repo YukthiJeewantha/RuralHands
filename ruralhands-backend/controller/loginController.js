@@ -54,3 +54,36 @@ exports.registerBuyer = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.loginSeller = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const seller = await Seller.findOne({ email });
+    if (!seller) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, seller.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    // Return seller data without password
+    const sellerSafeData = {
+      _id: seller._id,
+      name: seller.name,
+      email: seller.email,
+      phone: seller.phone,
+      role: seller.role,
+    };
+
+    res.status(200).json({
+      message: "Seller logged in successfully",
+      seller: sellerSafeData,
+    });
+  } catch (error) {
+    console.error("Error logging in seller:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
