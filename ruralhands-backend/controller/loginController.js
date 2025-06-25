@@ -105,3 +105,18 @@ exports.loginBuyer = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.getSellerProfile = async (req, res) => {
+  const { sellerId } = req.params;
+
+  try {
+    const seller = await Seller.findById(sellerId);
+    if (!seller) {
+      return res.status(404).json({ message: "Seller not found" });
+    }
+    res.status(200).json(seller);
+  } catch (error) {
+    console.error("Error fetching seller profile:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
