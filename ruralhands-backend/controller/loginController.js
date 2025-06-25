@@ -32,3 +32,25 @@ exports.registerSeller = async (req, res) => {
   }
 };
 
+exports.registerBuyer = async (req, res) => {
+  const { name, email, phone, password } = req.body;
+
+  try {
+    const existingBuyer = await Buyer.findOne({ email });
+    if (existingBuyer) {
+      return res.status(400).json({ message: "Buyer already exists" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newBuyer = new Buyer({
+      name,
+      email,
+      phone,
+      password: hashedPassword,
+    });
+    await newBuyer.save();
+    res.status(201).json({ message: "Buyer registered successfully" });
+  } catch (error) {
+    console.error("Error registering buyer:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
