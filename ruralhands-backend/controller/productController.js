@@ -50,3 +50,30 @@ exports.createProduct = async (req, res) => {
   }
 };
 
+exports.getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.find().sort({ createdAt: -1 });
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Get Products Error:", error.message);
+    res.status(500).json({ message: "Failed to fetch products." });
+  }
+};
+exports.getProductsBySeller = async (req, res) => {
+  try {
+    const { sellerId } = req.params;
+
+    if (!sellerId) {
+      return res.status(400).json({ message: "Seller ID is required" });
+    }
+
+    const products = await Product.find({ seller: sellerId }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Get Seller Products Error:", error.message);
+    res.status(500).json({ message: "Failed to fetch seller products." });
+  }
+};
+
