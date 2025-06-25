@@ -87,3 +87,21 @@ exports.loginSeller = async (req, res) => {
   }
 };
 
+exports.loginBuyer = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const buyer = await Buyer.findOne({ email });
+    if (!buyer) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+    const isPasswordValid = await bcrypt.compare(password, buyer.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+    res.status(200).json({ message: "Buyer logged in successfully", buyer });
+  } catch (error) {
+    console.error("Error logging in buyer:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
