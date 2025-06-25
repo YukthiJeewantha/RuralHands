@@ -100,3 +100,58 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
+exports.updateProduct = async (req, res) => {
+  try {
+    const {
+      name,
+      artist,
+      price,
+      badges,
+      category,
+      description,
+      features,
+      stockCount,
+    } = req.body;
+
+    const productId = req.params.id;
+    let updatedFields = {
+      name,
+      artist,
+      price,
+      category,
+      description,
+      stockCount,
+    };
+
+    if (badges) {
+      updatedFields.badges = JSON.parse(badges);
+    }
+
+    if (features) {
+      updatedFields.features = JSON.parse(features);
+    }
+
+    // Optional: Handle image update via Cloudinary if file sent
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "products",
+      });
+      updatedFields.imageUrl = result.secure_url;
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      updatedFields,
+      { new: true } // return the updated document
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found." });
+    }
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error("Update Product Error:", error.message);
+    res.status(500).json({ message: "Failed to update product." });
+  }
+};
