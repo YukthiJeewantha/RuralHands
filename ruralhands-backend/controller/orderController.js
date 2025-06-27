@@ -48,3 +48,33 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+exports.getOrdersBySeller = async (req, res) => {
+  const { sellerId } = req.params;
+  try {
+    const orders = await Order.find({ "items.sellerId": sellerId }).populate(
+      "items.productId"
+    );
+
+    if (!orders.length) {
+      return res
+        .status(404)
+        .json({ message: "No orders found for this seller." });
+    }
+
+    const filteredOrders = orders.map((order) => {
+      const filteredItems = order.items.filter(
+        (item) => item.sellerId.toString() === sellerId
+      );
+      return {
+        ...order.toObject(),
+        items: filteredItems,
+      };
+    });
+
+    res.status(200).json(filteredOrders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch seller orders" });
+  }
+};
+
