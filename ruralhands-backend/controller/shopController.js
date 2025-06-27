@@ -60,3 +60,21 @@ exports.getShopById = async (req, res) => {
   }
 };
 
+
+
+exports.getShopsBySeller = async (req, res) => {
+  try {
+    const { sellerId } = req.params;
+
+    if (!sellerId) {
+      return res.status(400).json({ message: "Seller ID is required" });
+    }
+
+    const shops = await Shop.find({ seller: sellerId }).sort({ createdAt: -1 });
+
+    res.status(200).json(shops);
+  } catch (error) {
+    console.error("Error fetching shops by seller:", error.message);
+    res.status(500).json({ message: "Failed to fetch shops." });
+  }
+};
