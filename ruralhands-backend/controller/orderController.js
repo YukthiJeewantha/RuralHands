@@ -78,3 +78,37 @@ exports.getOrdersBySeller = async (req, res) => {
   }
 };
 
+exports.updateStockAfterPayment = async (req, res) => {
+  try {
+    const { items } = req.body;
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "No items provided for stock update." });
+    }
+
+    for (const item of items) {
+      const product = await Product.findById(item.productId);
+      if (!product) {
+        return res
+          .status(404)
+          .json({ message: `Product not found: ${item.productId}` });
+      }
+
+      if (product.stockCount < item.quantity) {
+        return res
+          .status(400)
+          .json({ message: `Insufficient stock for product: ${product.name}` });
+      }
+
+      product.stockCount -= item.quantity;
+      await product.save();
+    }
+
+    return res.status(200).json({ message: "Stock updated successfully" });
+  } catch (error) {
+    console.error("Error updating stock:", error);
+    return res.status(500).json({ message: "Server error updating stock" });
+  }
+};
